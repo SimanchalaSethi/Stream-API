@@ -1,0 +1,68 @@
+Content:
+========
+1. Introduction to Stream API
+2. Java code without stream vs stream API.
+3. How to create object of stream and processing data.
+4. filter and map methods with example.
+5. Other important methods and operations such as collect(), sorted(), min(), max(), forEach(), toArrays(), and Stream.of().
+
+1. Introduction to Stream:
+==========================
+> These streams are related to collection frameworks/(group of objects). These streams are very different from io stream, io streams are the sequence of data.
+> These streams was introduced in Java 1.8 version.
+> Stream API is basically perform bulk operations and process the objects of collection.
+> Streams reduced the code length.
+> It is present in util package as a interface.
+
+2. Java code without stream vs stream API.
+==========================================
+        List<Integer> list1 = List.of(2, 4, 14, 25, 21, 34, 44);
+ // without stream
+        ArrayList<Integer> list1Even = new ArrayList<>();
+        for (Integer i : list1) {
+            if (i % 2 == 0) list1Even.add(i);
+        }
+        System.out.println(list1);
+        System.out.println(list1Even);
+
+  //using stream API
+        Stream<Integer> stream = list1.stream();
+        List<Integer> newList = stream.filter(i -> i % 2 == 0).collect(Collectors.toList());
+        System.out.println(newList);
+        List<Integer> newList = list1.stream().filter(i -> i % 2 == 0).collect(Collectors.toList());
+        System.out.println(newList);
+        System.out.println(list1.stream().filter(i -> i > 20).collect(Collectors.toList()));
+
+3. How to create stream object:
+===============================
+// 1- blank
+        Stream<Object> emptyStream = Stream.empty();
+        //2-array, object, collection
+        String names[] = {"Simanchala", "Uttam", "Ankit","Divya"};
+        Stream<String> stream1 = Stream.of(names);
+        stream1.forEach( e -> {
+            System.out.println(e);
+        });
+
+        //3
+        Stream<Object> streamBuilder = Stream.builder().build();
+
+        // 4
+        IntStream stream = Arrays.stream(new int[]{1, 232, 323, 1, 12, 1, 123, 5656, 4});
+        stream.forEach(i -> {
+            System.out.println(i);
+        });
+        // 5, List, Set
+        List<Integer> list2 = new ArrayList<>();
+        list2.add(12);
+        list2.add(32);
+        list2.add(26);
+        list2.add(31);
+        list2.add(78);
+        Stream<Integer> stream2 = list2.stream();
+        stream2.forEach(v -> {
+            System.out.println(v);
+        });
+
+  4. Stream Operations Important Stream methods:
+  ==============================================
